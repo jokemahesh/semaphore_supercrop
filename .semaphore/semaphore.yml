@@ -10,10 +10,7 @@ blocks:
       jobs:
         - name: 'Job #1'
           commands:
-            - checkout
-        - name: 'Job #2'
-          commands:
-            - ls -lah
+            - checkout && ls -lah && echo $PWD
         - name: 'Job #3'
           commands:
             - 'docker run -v ${PWD}/results:/opt/robotframework/reports:Z -v ${PWD}/TestCases:/opt/robotframework/tests:Z -e ROBOT_OPTIONS=''--name SuiteName'' ppodgorsek/robot-framework:latest'
