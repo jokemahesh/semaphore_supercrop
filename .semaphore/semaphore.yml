@@ -10,10 +10,7 @@ blocks:
       jobs:
         - name: 'Job #1'
           commands:
-            - checkout && ls -lah && env
-        - name: 'Job #2'
-          commands:
-            - 'ls -lah && docker run -v ${HOME}/${SEMAPHORE_PROJECT_NAME}/results:/opt/robotframework/reports:Z -v ${HOME}/${SEMAPHORE_PROJECT_NAME}/TestCases:/opt/robotframework/tests:Z -e ROBOT_OPTIONS=''--name SuiteName'' ppodgorsek/robot-framework:latest'
+            - 'checkout && docker run -v ${HOME}/${SEMAPHORE_PROJECT_NAME}/results:/opt/robotframework/reports:Z -v ${HOME}/${SEMAPHORE_PROJECT_NAME}/TestCases:/opt/robotframework/tests:Z -e ROBOT_OPTIONS=''--name SuiteName'' ppodgorsek/robot-framework:latest'
       agent:
         machine:
           type: e1-standard-2
