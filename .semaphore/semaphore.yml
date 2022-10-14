@@ -10,7 +10,7 @@ blocks:
       jobs:
         - name: 'Job #1'
           commands:
-            - checkout && robot
+            - checkout && probot
       agent:
         machine:
           type: e1-standard-2
