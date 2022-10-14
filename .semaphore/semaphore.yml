@@ -13,7 +13,7 @@ blocks:
             - checkout && ls -lah && echo $PWD
         - name: 'Job #3'
           commands:
-            - 'docker run -v ${PWD}/results:/opt/robotframework/reports:Z -v ${PWD}/TestCases:/opt/robotframework/tests:Z -e ROBOT_OPTIONS=''--name SuiteName'' ppodgorsek/robot-framework:latest'
+            - 'echo $PWD && docker run -v ${PWD}/results:/opt/robotframework/reports:Z -v ${PWD}/TestCases:/opt/robotframework/tests:Z -e ROBOT_OPTIONS=''--name SuiteName'' ppodgorsek/robot-framework:latest'
       agent:
         machine:
           type: e1-standard-2
