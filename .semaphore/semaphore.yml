@@ -13,11 +13,7 @@ blocks:
             - checkout
         - name: 'Job #2'
           commands:
-            - docker run \
-            - '    -v ./reports/Results:/opt/robotframework/reports:Z \'
-            - '    -v .:/opt/robotframework/tests:Z \'
-            - '    ppodgorsek/robot-framework \'
-            - '    python3 -m robot -d /opt/robotframework/reports --name SuiteName TestCases/*.robot'
+            - 'docker run -v ./reports/Results:/opt/robotframework/reports:Z -v .:/opt/robotframework/tests:Z ppodgorsek/robot-framework ''python3 -m robot -d /opt/robotframework/reports --name SuiteName TestCases/*.robot'''
       agent:
         machine:
           type: e1-standard-2
