@@ -11,12 +11,9 @@ blocks:
         - name: 'Job #1'
           commands:
             - checkout
-        - name: 'Job #2'
-          commands:
-            - 'docker pull ppodgorsek/robot-framework:latest'
         - name: 'Job #3'
           commands:
-            - 'docker run -v ${PWD}/results:/opt/robotframework/reports:Z -v ${PWD}:/opt/robotframework/tests:Z ppodgorsek/robot-framework:latest ''python -m robot -d /opt/robotframework/reports --name SuiteName TestCases/*.robot'''
+            - 'docker run -v ${PWD}/results:/opt/robotframework/reports:Z -v ${PWD}:/opt/robotframework/tests:Z ppodgorsek/robot-framework:latest ''python -m robot'''
       agent:
         machine:
           type: e1-standard-2
