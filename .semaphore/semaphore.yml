@@ -11,12 +11,3 @@ blocks:
         - name: 'Job #1'
           commands:
             - checkout
-  - name: TestJob
-    task:
-      prologue:
-        commands:
-          - checkout
-      jobs:
-        - name: Robot Test
-          commands:
-            - python3 -m robot -d Results --name SuiteName TestCases/*.robot
