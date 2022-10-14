@@ -10,7 +10,7 @@ blocks:
       jobs:
         - name: 'Job #1'
           commands:
-            - 'checkout && docker run -v ${PWD}/results:/opt/robotframework/reports:Z -v ${PWD}/TestCases:/opt/robotframework/tests:Z -e ROBOT_OPTIONS=''--name SuiteName'' ppodgorsek/robot-framework:latest'
+            - 'checkout && docker run -v ${PWD}:/opt/robotframework/reports:Z -v ${PWD}/TestCases:/opt/robotframework/tests:Z -e ROBOT_OPTIONS=''--name SuiteName'' ppodgorsek/robot-framework:latest'
       agent:
         machine:
           type: e1-standard-2
