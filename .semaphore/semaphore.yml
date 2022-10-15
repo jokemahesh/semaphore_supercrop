@@ -20,23 +20,6 @@ global_job_config:
     always:
       commands:
          - '[[ -f report.xml ]] && test-results publish report.xml'
-- name: Run tests
-  task:
-    prologue:
-      commands:
-        - checkout
-        # Creates `test-runner` image
-        - bin/setup.sh
-    jobs:
-    - name: go test
-      commands:
-        # `run-specs` creates `junit.xml` file in container's /app directory
-        - docker run -v $(pwd):/app test-runner run-specs
-
-    epilogue:
-      always:
-        commands:
-          - test-results publish junit.xml
 after_pipeline:
   task:
     jobs:
