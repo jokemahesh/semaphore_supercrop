@@ -37,7 +37,7 @@ global_job_config:
       always:
         commands:
           - test-results publish junit.xml
-   after_pipeline:
+after_pipeline:
   task:
     jobs:
       - name: Publish Results
