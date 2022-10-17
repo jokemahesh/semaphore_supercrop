@@ -4,22 +4,32 @@ agent:
   machine:
     type: e1-standard-2
     os_image: ubuntu2004
+global_job_config:
+  epilogue:
+    always:
+      commands:
+        - '[[ -f report.xml ]] && test-results publish report.xml'
 blocks:
   - name: 'Block #1'
     task:
       jobs:
         - name: 'Job #1'
           commands:
-            - 'checkout && docker run -v ${PWD}:/opt/robotframework/tests:Z -e ROBOT_OPTIONS=''--name SuiteName'' -e ROBOT_TESTS_DIR=/opt/robotframework/tests/TestCases ppodgorsek/robot-framework:latest'
+            - checkout
+            - 'mkdir -p ${HOME}/results'
+            - 'docker run -v ${PWD}:/opt/robotframework/test:Z -v ${HOME}/results:/opt/robotframework/reports:Z -e ROBOT_OPTIONS=''--name SuiteName'' -e ROBOT_TESTS_DIR=/opt/robotframework/test/TestCases --user=1001:1001 ppodgorsek/robot-framework:latest'
       agent:
         machine:
           type: e1-standard-2
           os_image: ubuntu2004
-global_job_config:
-  epilogue:
-    always:
-      commands:
-         - '[[ -f report.xml ]] && test-results publish report.xml'
+      prologue:
+        commands:
+          - docker pull ppodgorsek/robot-framework
+      epilogue:
+        always:
+          commands:
+            - 'ls -lah ${HOME}/results/'
+            - 'test-results publish ${HOME}/results/output.xml'
 after_pipeline:
   task:
     jobs:
